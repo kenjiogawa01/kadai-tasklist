@@ -15,9 +15,13 @@ class TasksController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
-        
-        return view('tasks.index', ['tasks'=> $tasks,]);
+         if (\Auth::check()) { 
+                $tasks = Task::all();
+                
+                return view('tasks.index', ['tasks'=> $tasks,]);
+         }
+         
+         return view('welcome');
     }
 
     /**
