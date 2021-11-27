@@ -48,11 +48,15 @@ class TasksController extends Controller
             'content' => 'required',
         ]);
         
+        if (\Auth::check()) { 
+            $user = \Auth::user()->id;
+        }
+        
         
         $task = new Task;
         $task->status = $request->status;
         $task->content = $request->content;
-        $task->user_id = $request->user->tasks->id;
+        $task->user_id = $user;
         $task->save();
 
         return redirect('/');
