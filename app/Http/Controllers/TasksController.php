@@ -52,7 +52,7 @@ class TasksController extends Controller
         $task = new Task;
         $task->status = $request->status;
         $task->content = $request->content;
-        $task->user_id = $request->id;
+        $task->user_id = $request->user->tasks->id;
         $task->save();
 
         return redirect('/');
